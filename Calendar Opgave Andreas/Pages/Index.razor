@@ -1,11 +1,23 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
-
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+<h1>Helligdage</h1>
+    <h3>Dette er mit kalendar </h3>
 
 
+<table>
+    <thead>
+        <tr>
+            <th>Month</th>
+            <th>Holidays</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in helligdage)
+        {
+            <tr>
+                <td>@item.Navn</td>
+                <td>@item.Dato</td>
+            </tr> 
+        }
+    </tbody>
+</table>

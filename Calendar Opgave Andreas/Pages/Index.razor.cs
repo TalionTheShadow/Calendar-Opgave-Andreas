@@ -32,18 +32,23 @@ namespace Calendar_Opgave_Andreas.Pages
             public string? Navn { get; set; }
         }
 
-        public List<Dag>? helligdag { get; set; }
+        public List<Dag>? helligdage { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
-
+            Console.WriteLine("Before");
+            helligdage = await GetHelligdag();
+            Console.WriteLine("After");
+            
         }
 
         async Task<List<Dag>> GetHelligdag()
         {
             using (HttpClient client = new HttpClient())
             {
+                Console.WriteLine("FFFFF");
                 HttpResponseMessage svar = await client.GetAsync(BaseApiUrl);
+                Console.WriteLine("FFFFF");
                 if (svar.IsSuccessStatusCode)
                 {
                     string json = await svar.Content.ReadAsStringAsync();
