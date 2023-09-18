@@ -48,7 +48,6 @@ namespace Calendar_Opgave_Andreas.Pages
             {
                 Console.WriteLine("FFFFF");
                 HttpResponseMessage svar = await client.GetAsync(BaseApiUrl);
-                Console.WriteLine("FFFFF");
                 if (svar.IsSuccessStatusCode)
                 {
                     string json = await svar.Content.ReadAsStringAsync();
