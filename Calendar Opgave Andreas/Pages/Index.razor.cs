@@ -52,26 +52,27 @@ namespace Calendar_Opgave_Andreas.Pages
                 {
                     string json = await svar.Content.ReadAsStringAsync();
                     JObject jsonObject = JObject.Parse(json);
-                    JArray? holidaysArray = jsonObject["holidays"] as JArray;
-                    if (holidaysArray != null)
+                    JArray? helligdageArray = jsonObject["helligdage"] as JArray;
+                    if (helligdageArray != null)
                     {
-                        var holidayList = new List<Dag>();
-                        foreach (JObject holidayObject in holidaysArray)
+                        var helligdageList = new List<Dag>();
+                        foreach (JObject helligdageObject in helligdageArray)
                         {
-                            string? navn = holidayObject["navn"]?.ToString();
-                            DateTime? dato = holidayObject["dato"]?.ToObject<DateTime?>();
+                            string? navn = helligdageObject["navn"]?.ToString();
+                            DateTime? dato = helligdageObject["dato"]?.ToObject<DateTime?>();
                             Dag holiday = new Dag()
                             {
                                 Navn = navn,
                                 Dato = dato
                             };
-                            holidayList.Add(holiday);
+                            helligdageList.Add(holiday);
                         }
-                        return holidayList;
+                        return helligdageList;
                     }
                     else
                     {
-
+                        Console.WriteLine("Fejl");
+                        return new List<Dag>();
                     }
 
                 }
